@@ -20,12 +20,10 @@ sudo apt install realtek-rtl88xxau-dkms
 
 # Installing Nerd Font
 
-wget github.com/ryanoasis/nerd-fonts/releases/download/v2.3.0-RC/FiraCode.zip
-unzip -d $HOME/.local/share/fonts FiraCode.zip
-rm FiraCode.zip
-fc-cache -fv
-
-# TODO: $HOME/.config/qterminal.org/qterminal.ini
+# wget github.com/ryanoasis/nerd-fonts/releases/download/v2.3.0-RC/FiraCode.zip
+# unzip -d $HOME/.local/share/fonts FiraCode.zip
+# rm FiraCode.zip
+# fc-cache -fv
 
 # Installing Neovim
 
