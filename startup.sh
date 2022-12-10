@@ -30,3 +30,7 @@ sudo apt install realtek-rtl88xxau-dkms
 wget github.com/neovim/neovim/releases/download/v0.8.1/nvim-linux64.deb
 sudo apt install ./nvim-linux64.deb
 rm -rf nvim-linux64.deb
+
+# Installing NvChad
+
+git clone https://github.com/NvChad/NvChad $HOME\AppData\Local\nvim --depth 1 && nvim
