@@ -33,4 +33,4 @@ rm -rf nvim-linux64.deb
 
 # Installing NvChad
 
-git clone https://github.com/NvChad/NvChad $HOME\AppData\Local\nvim --depth 1 && nvim
+git clone github.com/NvChad/NvChad $HOME/.config/nvim --depth 1 && nvim
