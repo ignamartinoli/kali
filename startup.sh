@@ -7,7 +7,7 @@ sudo apt autoremove -y
 
 # Upgrading Kali Linux
 
-sudo apt update && sudo apt dist-upgrade -y
+sudo apt update -y && sudo apt dist-upgrade -y
 
 # Changing passwords
 
