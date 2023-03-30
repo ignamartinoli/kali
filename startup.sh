@@ -16,7 +16,7 @@ sudo passwd kali
 
 # Installing drivers
 
-sudo apt install realtek-rtl88xxau-dkms
+sudo apt install realtek-rtl88xxau-dkms -y
 
 # Installing Nerd Font
 
