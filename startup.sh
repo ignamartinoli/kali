@@ -20,7 +20,7 @@ sudo passwd kali
 
 # echo "$cyan-=-=-=-=-=[ Adding keymaps ]=-=-=-=-=-"
 echo 'sed'
-sed -i '/backword-kill-line/a bindkey '\''^H'\'' backward-kill-word                   # ctrl + delete' "$HOME/.zshrc"
+sed -i '/backward-kill-line/a bindkey '\''^H'\'' backward-kill-word                   # ctrl + delete' "$HOME/.zshrc"
 echo 'xmod'
 echo 'keycode 66 = Escape' > "$HOME/.Xmodmap"
 xmodmap "$HOME/.Xmodmap"
