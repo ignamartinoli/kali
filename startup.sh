@@ -1,36 +1,35 @@
 #!/bin/sh
 
-# Updating Kali Linux
+cyan='\033[0;36m'
 
+echo "$cyan-=-=-=-=-=[ Updating ]=-=-=-=-=-"
 sudo apt update -y && sudo apt upgrade -y
 sudo apt autoremove -y
 
-# Upgrading Kali Linux
+echo "$cyan-=-=-=-=-=[ Upgrading ]=-=-=-=-=-"
+sudo apt update && sudo dist-upgrade -y
 
-sudo apt update -y && sudo apt dist-upgrade -y
-
-# Changing passwords
-
+echo "$cyan-=-=-=-=-=[ Changing root password ]=-=-=-=-=-"
 sudo passwd root
+
+echo "$cyan-=-=-=-=-=[ Changing user password ]=-=-=-=-=-"
 sudo passwd kali
 
-# Installing drivers
-
+echo "$cyan-=-=-=-=-=[ Installing drivers ]=-=-=-=-=-"
 sudo apt install realtek-rtl88xxau-dkms -y
 
-# Installing Nerd Font
+echo "$cyan-=-=-=-=-=[ Adding keymaps ]=-=-=-=-=-"
+sed -i 'backword-kill-line/a bindkey '\''^H'\'' backward-kill-word                   # ctrl + delete' "$HOME/.zshrc"
+cat 'keycode 66 = Escape' > "$HOME/.Xmodmap"
+xmodmap "$HOME/.Xmodmap"
 
-# wget github.com/ryanoasis/nerd-fonts/releases/download/v2.3.0-RC/FiraCode.zip
-# unzip -d $HOME/.local/share/fonts FiraCode.zip
-# rm FiraCode.zip
-# fc-cache -fv
+echo "$cyan-=-=-=-=-=[ Installing Neovim ]=-=-=-=-=-"
+wget -qO "$HOME/nvim-linux64.tar.gz" 'github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz'
+tar xzf "$HOME/nvim-linux64.tar.gz" -C "$HOME"
+rm "$HOME/nvim-linux64.tar.gz"
+sudo ln -s "$HOME/nvim-linux64/bin/nvim" '/usr/local/bin/nvim'
+sudo apt install npm ripgrep -y
+git clone 'https://github.com/NvChad/NvChad' "$HOME/.config/nvim" --depth 1
+# TODO: sed "$HOME/.config/nvim/lua/custom/configs/overrides.lua"
 
-# Installing Neovim
-
-wget github.com/neovim/neovim/releases/download/v0.8.1/nvim-linux64.deb
-sudo apt install ./nvim-linux64.deb
-rm -rf nvim-linux64.deb
-
-# Installing NvChad
-
-git clone github.com/NvChad/NvChad $HOME/.config/nvim --depth 1 && nvim
+echo "$cyan-=-=-=-=-=[ SETUP FINISHED ]=-=-=-=-=-"
