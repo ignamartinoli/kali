@@ -13,7 +13,7 @@ sudo apt update -qqy && sudo apt upgrade -qqy
 sudo apt autoremove -qqy
 
 echo "$cyan-=-=-=-=-=[ Upgrading ]=-=-=-=-=-"
-sudo apt update && sudo dist-upgrade -qqy
+sudo apt update -qqy && sudo apt dist-upgrade -qqy
 
 echo "$cyan-=-=-=-=-=[ Installing drivers ]=-=-=-=-=-"
 sudo apt install realtek-rtl88xxau-dkms -qqy
