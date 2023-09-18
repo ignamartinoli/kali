@@ -3,5 +3,5 @@
 ## Installation
 
 ```shell
-wget -O - 'https://raw.githubusercontent.com/ignamartinoli/sop.nvim/master/startup.sh' | sh
+wget -O - 'https://raw.githubusercontent.com/ignamartinoli/kali/master/startup.sh' | sh
 ```
