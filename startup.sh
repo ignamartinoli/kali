@@ -3,11 +3,11 @@
 cyan='\033[0;36m'
 
 echo "$cyan-=-=-=-=-=[ Updating ]=-=-=-=-=-"
-sudo apt update -y && sudo apt upgrade -y
-sudo apt autoremove -y
+sudo apt update -qqy && sudo apt upgrade -qqy
+sudo apt autoremove -qqy
 
 echo "$cyan-=-=-=-=-=[ Upgrading ]=-=-=-=-=-"
-sudo apt update && sudo dist-upgrade -y
+sudo apt update && sudo dist-upgrade -qqy
 
 echo "$cyan-=-=-=-=-=[ Changing root password ]=-=-=-=-=-"
 sudo passwd root
@@ -16,7 +16,7 @@ echo "$cyan-=-=-=-=-=[ Changing user password ]=-=-=-=-=-"
 sudo passwd kali
 
 echo "$cyan-=-=-=-=-=[ Installing drivers ]=-=-=-=-=-"
-sudo apt install realtek-rtl88xxau-dkms -y
+sudo apt install realtek-rtl88xxau-dkms -qqy
 
 echo "$cyan-=-=-=-=-=[ Adding keymaps ]=-=-=-=-=-"
 sed -i 'backword-kill-line/a bindkey '\''^H'\'' backward-kill-word                   # ctrl + delete' "$HOME/.zshrc"
@@ -28,7 +28,7 @@ wget -qO "$HOME/nvim-linux64.tar.gz" 'github.com/neovim/neovim/releases/latest/d
 tar xzf "$HOME/nvim-linux64.tar.gz" -C "$HOME"
 rm "$HOME/nvim-linux64.tar.gz"
 sudo ln -s "$HOME/nvim-linux64/bin/nvim" '/usr/local/bin/nvim'
-sudo apt install npm ripgrep -y
+sudo apt install npm ripgrep -qqy
 git clone 'https://github.com/NvChad/NvChad' "$HOME/.config/nvim" --depth 1
 # TODO: sed "$HOME/.config/nvim/lua/custom/configs/overrides.lua"
 
