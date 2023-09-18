@@ -2,18 +2,18 @@
 
 cyan='\033[0;36m'
 
+echo "$cyan-=-=-=-=-=[ Changing root password ]=-=-=-=-=-"
+sudo passwd root
+
+echo "$cyan-=-=-=-=-=[ Changing user password ]=-=-=-=-=-"
+sudo passwd kali
+
 echo "$cyan-=-=-=-=-=[ Updating ]=-=-=-=-=-"
 sudo apt update -qqy && sudo apt upgrade -qqy
 sudo apt autoremove -qqy
 
 echo "$cyan-=-=-=-=-=[ Upgrading ]=-=-=-=-=-"
 sudo apt update && sudo dist-upgrade -qqy
-
-echo "$cyan-=-=-=-=-=[ Changing root password ]=-=-=-=-=-"
-sudo passwd root
-
-echo "$cyan-=-=-=-=-=[ Changing user password ]=-=-=-=-=-"
-sudo passwd kali
 
 echo "$cyan-=-=-=-=-=[ Installing drivers ]=-=-=-=-=-"
 sudo apt install realtek-rtl88xxau-dkms -qqy
