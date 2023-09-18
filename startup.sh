@@ -19,7 +19,9 @@ sudo passwd kali
 # sudo apt install realtek-rtl88xxau-dkms -qqy
 
 # echo "$cyan-=-=-=-=-=[ Adding keymaps ]=-=-=-=-=-"
+echo 'sed'
 sed -i '/backword-kill-line/a bindkey '\''^H'\'' backward-kill-word                   # ctrl + delete' "$HOME/.zshrc"
+echo 'xmod'
 echo 'keycode 66 = Escape' > "$HOME/.Xmodmap"
 xmodmap "$HOME/.Xmodmap"
 
