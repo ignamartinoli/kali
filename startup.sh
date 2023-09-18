@@ -26,7 +26,7 @@ xmodmap "$HOME/.Xmodmap"
 echo "$cyan-=-=-=-=-=[ Installing Nerd Font ]=-=-=-=-=-"
 fonts="$HOME/.local/share/fonts"
 wget -qO "$HOME/FiraCode.zip" 'github.com/ryanoasis/nerd-fonts/releases/latest/download/FiraCode.zip'
-[ -d "$fonts" ] || mkdir -p "$fonts" && unzip -d "$fonts" "$HOME/FiraCode.zip"
+[ -d "$fonts" ] || mkdir -p "$fonts" && unzip -od "$fonts" "$HOME/FiraCode.zip"
 rm "$HOME/FiraCode.zip"
 fc-cache -fv
 
