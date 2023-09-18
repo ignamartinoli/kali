@@ -23,6 +23,13 @@ sed -i '/backword-kill-line/a bindkey '\''^H'\'' backward-kill-word             
 echo 'keycode 66 = Escape' > "$HOME/.Xmodmap"
 xmodmap "$HOME/.Xmodmap"
 
+echo "$cyan-=-=-=-=-=[ Installing Nerd Font ]=-=-=-=-=-"
+fonts="$HOME/.local/share/fonts"
+wget -qO "$HOME/FiraCode.zip" 'github.com/ryanoasis/nerd-fonts/releases/latest/download/FiraCode.zip'
+[ -d "$fonts" ] || mkdir -p "$fonts" && unzip -d "$fonts" "$HOME/FiraCode.zip"
+rm "$HOME/FiraCode.zip"
+fc-cache -fv
+
 echo "$cyan-=-=-=-=-=[ Installing Neovim ]=-=-=-=-=-"
 wget -qO "$HOME/nvim-linux64.tar.gz" 'github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz'
 tar xzf "$HOME/nvim-linux64.tar.gz" -C "$HOME"
