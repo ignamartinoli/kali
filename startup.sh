@@ -19,7 +19,7 @@ echo "$cyan-=-=-=-=-=[ Installing drivers ]=-=-=-=-=-"
 sudo apt install realtek-rtl88xxau-dkms -qqy
 
 echo "$cyan-=-=-=-=-=[ Adding keymaps ]=-=-=-=-=-"
-sed -i 'backword-kill-line/a bindkey '\''^H'\'' backward-kill-word                   # ctrl + delete' "$HOME/.zshrc"
+sed -i '/backword-kill-line/a bindkey '\''^H'\'' backward-kill-word                   # ctrl + delete' "$HOME/.zshrc"
 echo 'keycode 66 = Escape' > "$HOME/.Xmodmap"
 xmodmap "$HOME/.Xmodmap"
 
