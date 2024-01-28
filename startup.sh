@@ -1,36 +1,34 @@
 #!/bin/sh
 
-cyan='\033[0;36m'
-
-echo "$cyan-=-=-=-=-=[ Changing root password ]=-=-=-=-=-"
+tput setaf 4; echo '-=-=-=-=-=[ Changing root password ]=-=-=-=-=-'; tput sgr0
 sudo passwd root
 
-echo "$cyan-=-=-=-=-=[ Changing user password ]=-=-=-=-=-"
+tput setaf 4; echo '-=-=-=-=-=[ Changing user password ]=-=-=-=-=-'; tput sgr0
 sudo passwd kali
 
-echo "$cyan-=-=-=-=-=[ Updating ]=-=-=-=-=-"
+tput setaf 4; echo '-=-=-=-=-=[ Updating ]=-=-=-=-=-'; tput sgr0
 sudo apt update -qqy && sudo apt upgrade -qqy
 sudo apt autoremove -qqy
 
-echo "$cyan-=-=-=-=-=[ Upgrading ]=-=-=-=-=-"
+tput setaf 4; echo '-=-=-=-=-=[ Upgrading ]=-=-=-=-=-'; tput sgr0
 sudo apt update -qqy && sudo apt dist-upgrade -qqy
 
-echo "$cyan-=-=-=-=-=[ Installing drivers ]=-=-=-=-=-"
+tput setaf 4; echo '-=-=-=-=-=[ Installing drivers ]=-=-=-=-=-'; tput sgr0
 sudo apt install realtek-rtl88xxau-dkms -qqy
 
-echo "$cyan-=-=-=-=-=[ Adding keymaps ]=-=-=-=-=-"
+tput setaf 4; echo '-=-=-=-=-=[ Adding keymaps ]=-=-=-=-=-'; tput sgr0
 sed -i '/backward-kill-line/a bindkey '\''^?'\'' backward-kill-word                   # ctrl + delete' "$HOME/.zshrc"
 echo 'keycode 66 = Escape' > "$HOME/.Xmodmap"
 xmodmap "$HOME/.Xmodmap"
 
-echo "$cyan-=-=-=-=-=[ Installing Nerd Font ]=-=-=-=-=-"
+tput setaf 4; echo '-=-=-=-=-=[ Installing Nerd Font ]=-=-=-=-=-'; tput sgr0
 fonts="$HOME/.local/share/fonts"
 wget -qO "$HOME/FiraCode.zip" 'github.com/ryanoasis/nerd-fonts/releases/latest/download/FiraCode.zip'
 [ -d "$fonts" ] || mkdir -p "$fonts" && unzip -od "$fonts" "$HOME/FiraCode.zip"
 rm "$HOME/FiraCode.zip"
 fc-cache -fv
 
-echo "$cyan-=-=-=-=-=[ Installing Neovim ]=-=-=-=-=-"
+tput setaf 4; echo '-=-=-=-=-=[ Installing Neovim ]=-=-=-=-=-'; tput sgr0
 wget -qO "$HOME/nvim-linux64.tar.gz" 'github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz'
 tar xzf "$HOME/nvim-linux64.tar.gz" -C "$HOME"
 rm "$HOME/nvim-linux64.tar.gz"
@@ -39,4 +37,4 @@ sudo apt install npm ripgrep -qqy
 git clone 'https://github.com/NvChad/NvChad' "$HOME/.config/nvim" --depth 1
 # TODO: sed "$HOME/.config/nvim/lua/custom/configs/overrides.lua"
 
-echo "$cyan-=-=-=-=-=[ SETUP FINISHED ]=-=-=-=-=-"
+tput setaf 4; echo '-=-=-=-=-=[ SETUP FINISHED ]=-=-=-=-=-'; tput sgr0
