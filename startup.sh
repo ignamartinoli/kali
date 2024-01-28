@@ -10,9 +10,6 @@ read -r password
 echo "root:$password" | chpasswd
 echo "kali:$password" | chpasswd
 
-tput setaf 4; echo '-=-=-=-=-=[ Changing user password ]=-=-=-=-=-'; tput sgr0
-sudo passwd kali
-
 tput setaf 4; echo '-=-=-=-=-=[ Updating ]=-=-=-=-=-'; tput sgr0
 sudo apt update -qqy && sudo apt upgrade -qqy
 sudo apt autoremove -qqy
