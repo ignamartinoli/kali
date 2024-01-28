@@ -1,7 +1,14 @@
 #!/bin/sh
 
-tput setaf 4; echo '-=-=-=-=-=[ Changing root password ]=-=-=-=-=-'; tput sgr0
-sudo passwd root
+# NOTE: setaf 2 is green, setaf 3 is yellow
+
+[ "$(id -u)" -eq 0 ] || { tput setaf 1; echo "You must run this as root"; tput sgr0; exit 1; }
+
+tput setaf 4; echo '-=-=-=-=-=[ Changing passwords ]=-=-=-=-=-'; tput sgr0
+echo 'New password: \c'
+read -r password
+echo "root:$password" | chpasswd
+echo "kali:$password" | chpasswd
 
 tput setaf 4; echo '-=-=-=-=-=[ Changing user password ]=-=-=-=-=-'; tput sgr0
 sudo passwd kali
