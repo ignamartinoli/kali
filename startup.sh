@@ -11,14 +11,14 @@ echo "root:$password" | chpasswd
 echo "kali:$password" | chpasswd
 
 tput setaf 4; echo '-=-=-=-=-=[ Updating ]=-=-=-=-=-'; tput sgr0
-sudo apt update -qqy && sudo apt upgrade -qqy
-sudo apt autoremove -qqy
+apt update -qqy && apt upgrade -qqy
+apt autoremove -qqy
 
 tput setaf 4; echo '-=-=-=-=-=[ Upgrading ]=-=-=-=-=-'; tput sgr0
-sudo apt update -qqy && sudo apt dist-upgrade -qqy
+apt update -qqy && apt dist-upgrade -qqy
 
 tput setaf 4; echo '-=-=-=-=-=[ Installing drivers ]=-=-=-=-=-'; tput sgr0
-sudo apt install realtek-rtl88xxau-dkms -qqy
+apt install realtek-rtl88xxau-dkms -qqy
 
 tput setaf 4; echo '-=-=-=-=-=[ Adding keymaps ]=-=-=-=-=-'; tput sgr0
 sed -i '/backward-kill-line/a bindkey '\''^?'\'' backward-kill-word                   # ctrl + delete' "$HOME/.zshrc"
@@ -36,8 +36,8 @@ tput setaf 4; echo '-=-=-=-=-=[ Installing Neovim ]=-=-=-=-=-'; tput sgr0
 wget -qO "$HOME/nvim-linux64.tar.gz" 'github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz'
 tar xzf "$HOME/nvim-linux64.tar.gz" -C "$HOME"
 rm "$HOME/nvim-linux64.tar.gz"
-sudo ln -s "$HOME/nvim-linux64/bin/nvim" '/usr/local/bin/nvim'
-sudo apt install npm ripgrep -qqy
+ln -s "$HOME/nvim-linux64/bin/nvim" '/usr/local/bin/nvim'
+apt install npm ripgrep -qqy
 git clone 'https://github.com/NvChad/NvChad' "$HOME/.config/nvim" --depth 1
 # TODO: sed "$HOME/.config/nvim/lua/custom/configs/overrides.lua"
 
