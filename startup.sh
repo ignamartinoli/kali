@@ -4,7 +4,7 @@
 
 [ "$(id -u)" -eq 0 ] || { tput setaf 1; echo "You must run this as root"; tput sgr0; exit 1; }
 
-user='/home/kali'
+user="/home/$(id -un)"
 
 tput setaf 4; echo '-=-=-=-=-=[ Changing passwords ]=-=-=-=-=-'; tput sgr0
 echo 'New password: \c'
