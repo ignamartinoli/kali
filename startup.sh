@@ -1,6 +1,10 @@
 #!/bin/sh
 
-# NOTE: setaf 2 is green, setaf 3 is yellow
+cleanup() {
+	sudo dpkg --config -a
+	rm -rf "$HOME/FiraCode.zip"
+	sudo rm -f '/usr/local/bin/nvim'
+}
 
 tput setaf 2; echo '-=-=-=-=-=[ Changing passwords ]=-=-=-=-=-'; tput sgr0
 echo 'New password: \c'
