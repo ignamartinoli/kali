@@ -27,13 +27,13 @@ tput setaf 2; echo '-=-=-=-=-=[ Installing Nerd Font ]=-=-=-=-=-'; tput sgr0
 # TODO: directory="$(mktemp -d)"
 fonts="$HOME/.local/share/fonts"
 wget -qO "$HOME/FiraCode.zip" 'github.com/ryanoasis/nerd-fonts/releases/latest/download/FiraCode.zip'
-mkdir -p "$fonts" && unzip -od "$fonts" "$HOME/FiraCode.zip"
+mkdir -p "$fonts" && unzip -od "$fonts" "$HOME/FiraCode.zip" # BUG: cleanup before
 fc-cache -fv
 
 tput setaf 2; echo '-=-=-=-=-=[ Installing Neovim ]=-=-=-=-=-'; tput sgr0
 wget -qO "$HOME/nvim-linux64.tar.gz" 'github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz'
-tar xzf "$HOME/nvim-linux64.tar.gz" -C "$HOME"
-ln -s "$HOME/nvim-linux64/bin/nvim" '/usr/local/bin/nvim'
+tar xzf "$HOME/nvim-linux64.tar.gz" -C "$HOME" # BUG: cleanup
+ln -s "$HOME/nvim-linux64/bin/nvim" '/usr/local/bin/nvim' # BUG: cleanup if already exists
 
 sudo apt install npm ripgrep -qqy
 # git clone 'https://github.com/NvChad/NvChad' "$HOME/.config/nvim" --depth 1
