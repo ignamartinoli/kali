@@ -6,6 +6,17 @@ cleanup() {
 	sudo rm -f '/usr/local/bin/nvim'
 }
 
+error() {
+	echo "Error: $1"
+	cleanup
+	exit 1
+}
+
+sudo -v || { echo 'Incorrect password.'; exit 1; }
+# trap 'error "Script terminated unexpectedly"' EXIT
+trap error EXIT
+cleanup
+
 tput setaf 2; echo '-=-=-=-=-=[ Changing passwords ]=-=-=-=-=-'; tput sgr0
 echo 'New password: \c'
 read -r password
