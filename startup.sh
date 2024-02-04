@@ -1,21 +1,28 @@
 #!/bin/sh
 
-cleanup() {
-	sudo dpkg --config -a
+tidy() {
+	# BUG: if there is a problem with a package, dpkg fucks all the process up
+	# sudo dpkg --configure -a
+	rm -f "$HOME/.Xmodmap"
 	rm -rf "$HOME/FiraCode.zip"
+	rm -r "$HOME/nvim-linux64.tar.gz"
+}
+
+reset() {
+	tidy
+	rm -rf "$HOME/nvim-linux64"
 	sudo rm -f '/usr/local/bin/nvim'
 }
 
 error() {
-	echo "Error: $1"
-	cleanup
+	tput setaf 1; echo '-=-=-=-=-=[ Error ]=-=-=-=-=-'; tput sgr0
+	reset
 	exit 1
 }
 
 sudo -v || { echo 'Incorrect password.'; exit 1; }
-# trap 'error "Script terminated unexpectedly"' EXIT
-trap error EXIT
-cleanup
+trap error 1 2 3 6
+reset
 
 tput setaf 2; echo '-=-=-=-=-=[ Changing passwords ]=-=-=-=-=-'; tput sgr0
 echo 'New password: \c'
@@ -42,16 +49,17 @@ tput setaf 2; echo '-=-=-=-=-=[ Installing Nerd Font ]=-=-=-=-=-'; tput sgr0
 # TODO: directory="$(mktemp -d)"
 fonts="$HOME/.local/share/fonts"
 wget -qO "$HOME/FiraCode.zip" 'github.com/ryanoasis/nerd-fonts/releases/latest/download/FiraCode.zip'
-mkdir -p "$fonts" && unzip -od "$fonts" "$HOME/FiraCode.zip" # BUG: cleanup before
+mkdir -p "$fonts" && unzip -od "$fonts" "$HOME/FiraCode.zip"
 fc-cache -fv
 
 tput setaf 2; echo '-=-=-=-=-=[ Installing Neovim ]=-=-=-=-=-'; tput sgr0
 wget -qO "$HOME/nvim-linux64.tar.gz" 'github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz'
-tar xzf "$HOME/nvim-linux64.tar.gz" -C "$HOME" # BUG: cleanup
-ln -s "$HOME/nvim-linux64/bin/nvim" '/usr/local/bin/nvim' # BUG: cleanup if already exists
+tar xzf "$HOME/nvim-linux64.tar.gz" -C "$HOME"
+sudo ln -s "$HOME/nvim-linux64/bin/nvim" '/usr/local/bin/nvim'
 
 sudo apt install npm ripgrep -qqy
 # git clone 'https://github.com/NvChad/NvChad' "$HOME/.config/nvim" --depth 1
 # TODO: sed "$HOME/.config/nvim/lua/custom/configs/overrides.lua"
 
 tput setaf 2; echo '-=-=-=-=-=[ Setup finished ]=-=-=-=-=-'; tput sgr0
+tidy
