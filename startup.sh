@@ -5,7 +5,7 @@ tidy() {
 	# sudo dpkg --configure -a
 	rm -f "$HOME/.Xmodmap"
 	rm -rf "$HOME/FiraCode.zip"
-	rm -r "$HOME/nvim-linux64.tar.gz"
+	rm -f "$HOME/nvim-linux64.tar.gz"
 }
 
 reset() {
