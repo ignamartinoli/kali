@@ -11,6 +11,7 @@ tidy() {
 reset() {
 	tidy
 	rm -rf "$HOME/nvim-linux64"
+ 	rm -rf "$HOME/.config/nvim"
 	sudo rm -f '/usr/local/bin/nvim'
 }
 
@@ -41,7 +42,8 @@ tput setaf 2; echo '-=-=-=-=-=[ Installing drivers ]=-=-=-=-=-'; tput sgr0
 sudo apt install realtek-rtl88xxau-dkms -qqy
 
 tput setaf 2; echo '-=-=-=-=-=[ Adding keymaps ]=-=-=-=-=-'; tput sgr0
-sed -i '/backward-kill-line/a bindkey '\''^?'\'' backward-kill-word                   # ctrl + delete' "$HOME/.zshrc"
+grep -q '^bindkey '\''^?'\''' "$HOME/.zshrc" || sed -i '/backward-kill-line/a bindkey '\''^?'\'' backward-kill-word                   # ctrl + delete' "$HOME/.zshrc"
+# sed -i '/backward-kill-line/a bindkey '\''^?'\'' backward-kill-word                   # ctrl + delete' "$HOME/.zshrc"
 echo 'keycode 66 = Escape' > "$HOME/.Xmodmap"
 xmodmap "$HOME/.Xmodmap"
 
