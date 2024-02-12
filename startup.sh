@@ -12,6 +12,9 @@ reset() {
 	tidy
 	rm -rf "$HOME/nvim-linux64"
  	rm -rf "$HOME/.config/nvim"
+	rm -rf "$HOME/.local/share/nvim"
+	rm -rf "$HOME/.local/state/nvim"
+	rm -rf "$HOME/.cache/nvim"
 	sudo rm -f '/usr/local/bin/nvim'
 }
 
@@ -59,7 +62,8 @@ tar xzf "$HOME/nvim-linux64.tar.gz" -C "$HOME"
 sudo ln -s "$HOME/nvim-linux64/bin/nvim" '/usr/local/bin/nvim'
 
 sudo apt install npm ripgrep -qqy
-# git clone 'https://github.com/NvChad/NvChad' "$HOME/.config/nvim" --depth 1
+git clone https://github.com/LazyVim/starter "$HOME/.config/nvim"
+rm -rf "$HOME/.config/nvim/.git"
 # TODO: sed "$HOME/.config/nvim/lua/custom/configs/overrides.lua"
 
 tput setaf 2; echo '-=-=-=-=-=[ Setup finished ]=-=-=-=-=-'; tput sgr0
