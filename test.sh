@@ -1,8 +1,8 @@
 #!/bin/sh
 
 # sudo -v || { echo 'Incorrect password'; exit 1; }
-echo 'sans sudo'
+echo 'sans sudo && mit IFS'
 
 echo 'New password: \c'
-read -r password
+IFS= read -r password
 echo "Result: $password"
