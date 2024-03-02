@@ -30,7 +30,7 @@ reset
 
 tput setaf 2; echo '-=-=-=-=-=[ Changing passwords ]=-=-=-=-=-'; tput sgr0
 echo 'New password: \c'
-read -r password
+read -rs password
 echo "root:$password" | sudo chpasswd
 echo "kali:$password" | sudo chpasswd
 
