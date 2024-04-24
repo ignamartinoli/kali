@@ -41,6 +41,9 @@ sudo apt autoremove -qqy
 tput setaf 2; echo '-=-=-=-=-=[ Upgrading ]=-=-=-=-=-'; tput sgr0
 sudo apt update -qqy && sudo apt dist-upgrade -qqy
 
+tput setaf 2; echo '-=-=-=-=-=[ Installing kernel headers ]=-=-=-=-=-'; tput sgr0
+sudo apt install "linux-headers-$(uname -r)"
+
 tput setaf 2; echo '-=-=-=-=-=[ Installing drivers ]=-=-=-=-=-'; tput sgr0
 sudo apt install realtek-rtl88xxau-dkms -qqy
 
