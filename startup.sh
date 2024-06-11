@@ -19,7 +19,7 @@ reset() {
 }
 
 error() {
-	stty echo
+	# stty echo
 	tput setaf 1; echo '-=-=-=-=-=[ Error ]=-=-=-=-=-'; tput sgr0
 	reset
 	exit 1
@@ -31,9 +31,9 @@ reset
 
 tput setaf 2; echo '-=-=-=-=-=[ Changing passwords ]=-=-=-=-=-'; tput sgr0
 echo 'New password: \c'
-stty -echo
+# stty -echo
 read -r password
-stty echo
+# stty echo
 echo "root:$password" | sudo chpasswd
 echo "kali:$password" | sudo chpasswd
 
