@@ -3,13 +3,13 @@
 tidy() {
 	# BUG: if there is a problem with a package, dpkg fucks all the process up
 	# sudo dpkg --configure -a
-	rm -f "$HOME/.Xmodmap"
 	rm -rf "$HOME/FiraCode.zip"
 	rm -f "$HOME/nvim-linux64.tar.gz"
 }
 
 reset() {
 	tidy
+ 	rm -f "$HOME/.Xmodmap"
 	rm -rf "$HOME/nvim-linux64"
  	rm -rf "$HOME/.config/nvim"
 	rm -rf "$HOME/.local/share/nvim"
