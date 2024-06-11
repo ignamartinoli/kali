@@ -34,6 +34,7 @@ echo 'New password: \c'
 stty -echo
 read -r password
 stty echo
+echo
 echo "root:$password" | sudo chpasswd
 echo "kali:$password" | sudo chpasswd
 
