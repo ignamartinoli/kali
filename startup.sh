@@ -21,7 +21,6 @@ reset() {
 	tidy
  	rm -f "$HOME/.Xmodmap"
 	rm -rf "$HOME/nvim-linux64" "$HOME/.config/nvim" "$HOME/.local/share/nvim" "$HOME/.local/state/nvim" "$HOME/.cache/nvim"
-	# sudo rm -f '/usr/local/bin/nvim'
  	sudo rm -f '/usr/local/bin/hx'
   	rm -r "$HOME/.config/helix"
 }
@@ -66,29 +65,21 @@ grep -q '^bindkey '\''^?'\''' "$HOME/.zshrc" || sed -i '/backward-kill-line/a bi
 echo 'keycode 66 = Escape' > "$HOME/.Xmodmap"
 xmodmap "$HOME/.Xmodmap"
 
+message 'Creating build directory'
+playground="$(mktemp -d)"
+
 message 'Installing Nerd Font'
-# TODO: directory="$(mktemp -d)"
 fonts="$HOME/.local/share/fonts"
-wget -qO "$HOME/FiraCode.zip" 'https://github.com/ryanoasis/nerd-fonts/releases/latest/download/FiraCode.zip'
-mkdir -p "$fonts" && unzip -od "$fonts" "$HOME/FiraCode.zip"
+wget -qO "$playground/FiraCode.zip" 'https://github.com/ryanoasis/nerd-fonts/releases/latest/download/FiraCode.zip'
+mkdir -p "$fonts" && unzip -od "$fonts" "$playground/FiraCode.zip"
 fc-cache -fv
 
-# message 'Installing Neovim'
-# wget -qO "$HOME/nvim-linux64.tar.gz" 'https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz'
-# tar xzf "$HOME/nvim-linux64.tar.gz" -C "$HOME"
-# sudo ln -sfn "$HOME/nvim-linux64/bin/nvim" '/usr/local/bin/nvim'
+message 'Installing Helix'
 version='24.07-x86_64-linux'
-wget -q "https://github.com/helix-editor/helix/releases/latest/download/helix-$version.tar.xz" 
-tar -xf "$HOME/helix-$version"
-mv "$HOME/helix-$version/hx" "/usr/local/bin"
-# mkdir "$XDG_CONFIG_HOME/helix"
-mv "$HOME/helix-$version/runtime" "$XDG_CONFIG_HOME/helix/"
-rm -r "$HOME/helix-$version"*
-
-sudo apt install npm ripgrep -qqy
-git clone 'https://github.com/LazyVim/starter' "$HOME/.config/nvim"
-rm -rf "$HOME/.config/nvim/.git"
-# TODO: sed "$HOME/.config/nvim/lua/custom/configs/overrides.lua"
+wget -qO "$playground/helix.tar.xz" "https://github.com/helix-editor/helix/releases/latest/download/helix-$version.tar.xz" 
+tar -xf "$playground/helix.tar.xz" -C "$playground"
+sudo mv "$playground/helix-$version/hx" '/usr/local/bin'
+mv -f "$playground/helix-$version/runtime" "$XDG_CONFIG_HOME/helix"
 
 message 'Setting wallpaper'
 xfconf-query -c 'xfce4-desktop' -p '/backdrop/screen0/monitorVirtual1/workspace0/last-image' -s '/usr/share/backgrounds/kali-16x9/kali-metal-dark.png'
