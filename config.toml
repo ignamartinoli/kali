@@ -1,0 +1,28 @@
+theme = 'catppuccin_macchiato'
+
+[editor]
+bufferline = 'multiple'
+cursorline = true
+color-modes = true
+line-number = 'relative'
+
+[editor.cursor-shape]
+insert = 'bar'
+normal = 'block'
+select = 'underline'
+
+[editor.indent-guides]
+render = true
+skip-levels = 1
+
+[editor.statusline]
+left = ['mode', 'spacer', 'diagnostics', 'spinner']
+right = ['file-name']
+separator = '│'
+
+[keys.normal]
+p = 'paste_clipboard_after'
+y = 'yank_to_clipboard'
+C-s = ':write'
+C-x = ':quit!'
+P = 'paste_clipboard_before'
