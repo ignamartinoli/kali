@@ -71,10 +71,17 @@ wget -qO "$HOME/FiraCode.zip" 'https://github.com/ryanoasis/nerd-fonts/releases/
 mkdir -p "$fonts" && unzip -od "$fonts" "$HOME/FiraCode.zip"
 fc-cache -fv
 
-message 'Installing Neovim'
-wget -qO "$HOME/nvim-linux64.tar.gz" 'https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz'
-tar xzf "$HOME/nvim-linux64.tar.gz" -C "$HOME"
-sudo ln -sfn "$HOME/nvim-linux64/bin/nvim" '/usr/local/bin/nvim'
+# message 'Installing Neovim'
+# wget -qO "$HOME/nvim-linux64.tar.gz" 'https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz'
+# tar xzf "$HOME/nvim-linux64.tar.gz" -C "$HOME"
+# sudo ln -sfn "$HOME/nvim-linux64/bin/nvim" '/usr/local/bin/nvim'
+version='24.07-x86_64-linux'
+wget -q "https://github.com/helix-editor/helix/releases/latest/download/helix-$version.tar.xz" 
+tar -xf "$HOME/helix-$version"
+mv "$HOME/helix-$version/hx" "/usr/local/bin"
+# mkdir "$XDG_CONFIG_HOME/helix"
+mv "$HOME/helix-$version/runtime" "$XDG_CONFIG_HOME/helix/"
+rm -r "$HOME/helix-$version"*
 
 sudo apt install npm ripgrep -qqy
 git clone 'https://github.com/LazyVim/starter' "$HOME/.config/nvim"
