@@ -21,7 +21,9 @@ reset() {
 	tidy
  	rm -f "$HOME/.Xmodmap"
 	rm -rf "$HOME/nvim-linux64" "$HOME/.config/nvim" "$HOME/.local/share/nvim" "$HOME/.local/state/nvim" "$HOME/.cache/nvim"
-	sudo rm -f '/usr/local/bin/nvim'
+	# sudo rm -f '/usr/local/bin/nvim'
+ 	sudo rm -f '/usr/local/bin/hx'
+  	rm -r "$HOME/.config/helix"
 }
 
 error() {
