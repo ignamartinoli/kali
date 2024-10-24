@@ -22,7 +22,7 @@ reset() {
  	rm -f "$HOME/.Xmodmap"
 	rm -rf "$HOME/nvim-linux64" "$HOME/.config/nvim" "$HOME/.local/share/nvim" "$HOME/.local/state/nvim" "$HOME/.cache/nvim"
  	sudo rm -f '/usr/local/bin/hx'
-  	rm -r "$HOME/.config/helix"
+  	rm -r "${XDG_CONFIG_HOME:-$HOME/.config}/helix"
 }
 
 error() {
@@ -79,7 +79,8 @@ version='24.07-x86_64-linux'
 wget -qO "$playground/helix.tar.xz" "https://github.com/helix-editor/helix/releases/latest/download/helix-$version.tar.xz" 
 tar -xf "$playground/helix.tar.xz" -C "$playground"
 sudo mv "$playground/helix-$version/hx" '/usr/local/bin'
-mv -f "$playground/helix-$version/runtime" "$XDG_CONFIG_HOME/helix"
+mv -f "$playground/helix-$version/runtime" "${XDG_CONFIG_HOME:-$HOME/.config}/helix"
+wget -qO "${XDG_CONFIG_HOME:-$HOME/.config}/helix/config.toml" 'https://raw.githubusercontent.com/ignamartinoli/kali/master/config.toml'
 
 message 'Setting wallpaper'
 xfconf-query -c 'xfce4-desktop' -p '/backdrop/screen0/monitorVirtual1/workspace0/last-image' -s '/usr/share/backgrounds/kali-16x9/kali-metal-dark.png'
