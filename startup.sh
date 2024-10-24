@@ -8,8 +8,7 @@
 # TODO: https://github.com/blacklanternsecurity/kali-setup-script/blob/master/kali-setup-script.sh
 
 message() {
-	message="$1"
-	tput setaf 2; echo "-=-=-=-=-=[ $message ]=-=-=-=-=-"; tput sgr0
+	tput setaf 2; echo "-=-=-=-=-=[ $1 ]=-=-=-=-=-"; tput sgr0
 }
 
 tidy() {
