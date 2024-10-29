@@ -22,7 +22,7 @@ reset() {
  	rm -f "$HOME/.Xmodmap"
 	rm -rf "$HOME/nvim-linux64" "$HOME/.config/nvim" "$HOME/.local/share/nvim" "$HOME/.local/state/nvim" "$HOME/.cache/nvim"
  	sudo rm -f '/usr/local/bin/hx'
-  	rm -r "${XDG_CONFIG_HOME:-$HOME/.config}/helix"
+  	rm -rf "${XDG_CONFIG_HOME:-$HOME/.config}/helix"
 }
 
 error() {
