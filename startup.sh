@@ -44,6 +44,9 @@ stty echo
 echo
 echo "root:$password" | sudo chpasswd
 echo "kali:$password" | sudo chpasswd
+# sudo adduser "$username"
+# sudo usermod -aG sudo "$username"
+# sudo usermod -L kali
 
 message 'Updating'
 export DEBIAN_FRONTEND='noninteractive'
