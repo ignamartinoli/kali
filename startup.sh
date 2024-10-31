@@ -53,8 +53,11 @@ export DEBIAN_FRONTEND='noninteractive'
 sudo apt update -qqy && sudo apt upgrade -qqy
 sudo apt autoremove -qqy
 
+message 'Installing Guest Additions'
+sudo mount '/dev/cdrom' '/media/cdrom'
+sudo '/media/cdrom/VBoxLinuxAdditions.run'
+
 message 'Upgrading'
-tput setaf 2; echo '-=-=-=-=-=[ Upgrading ]=-=-=-=-=-'; tput sgr0
 sudo apt update -qqy && sudo apt dist-upgrade -qqy
 
 message 'Installing kernel headers'
