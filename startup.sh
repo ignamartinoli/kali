@@ -49,7 +49,7 @@ echo "kali:$password" | sudo chpasswd
 # sudo usermod -L kali
 
 message 'Installing Guest Additions'
-sudo mount '/dev/cdrom' '/media/cdrom'
+sudo mount '/dev/cdrom' '/media/kali'
 sudo '/media/cdrom/VBoxLinuxAdditions.run'
 
 message 'Updating'
