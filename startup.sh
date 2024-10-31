@@ -48,14 +48,14 @@ echo "kali:$password" | sudo chpasswd
 # sudo usermod -aG sudo "$username"
 # sudo usermod -L kali
 
+message 'Installing Guest Additions'
+sudo mount '/dev/cdrom' '/media/cdrom'
+sudo '/media/cdrom/VBoxLinuxAdditions.run'
+
 message 'Updating'
 export DEBIAN_FRONTEND='noninteractive'
 sudo apt update -qqy && sudo apt upgrade -qqy
 sudo apt autoremove -qqy
-
-message 'Installing Guest Additions'
-sudo mount '/dev/cdrom' '/media/cdrom'
-sudo '/media/cdrom/VBoxLinuxAdditions.run'
 
 message 'Upgrading'
 sudo apt update -qqy && sudo apt dist-upgrade -qqy
