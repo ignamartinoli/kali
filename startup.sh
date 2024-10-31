@@ -54,11 +54,10 @@ sudo '/media/cdrom/VBoxLinuxAdditions.run'
 
 message 'Updating'
 export DEBIAN_FRONTEND='noninteractive'
-sudo apt update -qqy && sudo apt upgrade -qqy
+sudo apt update -qqy
+sudo apt upgrade -qqy
 sudo apt autoremove -qqy
-
-message 'Upgrading'
-sudo apt update -qqy && sudo apt dist-upgrade -qqy
+sudo apt dist-upgrade -qqy
 
 message 'Installing kernel headers'
 sudo apt install "linux-headers-$(uname -r)"
