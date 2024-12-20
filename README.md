@@ -1,4 +1,4 @@
-# Kali
+# 🐉 Kali
 
 ## Installation
 
