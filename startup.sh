@@ -98,9 +98,11 @@ while true; do
 			wget -qO "${XDG_CONFIG_HOME:-$HOME/.config}/helix/config.toml" 'https://raw.githubusercontent.com/ignamartinoli/kali/master/config.toml'
 			;;
 		*)
-			break
+			continue
 			;;
 	esac
+
+	break
 done
 
 message 'Setting wallpaper'
