@@ -59,7 +59,7 @@ sudo apt autoremove -qqy
 sudo apt dist-upgrade -qqy
 
 message 'Installing kernel headers'
-sudo apt install "linux-headers-$(uname -r)"
+sudo apt install "linux-headers-$(uname -r)" -qqy
 
 message 'Installing drivers'
 sudo apt install realtek-rtl88xxau-dkms -qqy
@@ -85,9 +85,10 @@ while true; do
 
 	case "$choice" in
 		1)
-			sudo apt install 'neovim'
+			sudo apt install 'neovim' -qqy
 			git clone 'https://github.com/LazyVim/starter' "${XDG_CONFIG_HOME:-$HOME/.config}/nvim"
 			rm -rf "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/.git"
+			sudo apt install 'npm' -qqy
 			;;
 		2)
 			version='24.07-x86_64-linux'
