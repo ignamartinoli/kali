@@ -49,8 +49,10 @@ echo "kali:$password" | sudo chpasswd
 # sudo usermod -L kali
 
 message 'Installing Guest Additions'
+echo '[!] Please, go to "Devices > Insert Guest Additions CD image..." and press any key to continue'
+read -r _
 sudo mount '/dev/cdrom' '/media/kali'
-sudo /media/kali/*/VBoxLinuxAdditions.run
+sudo '/media/kali/VBoxLinuxAdditions.run'
 
 export DEBIAN_FRONTEND='noninteractive'
 
