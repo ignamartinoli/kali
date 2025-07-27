@@ -2,11 +2,8 @@
 
 # TODO: evaluate PCredz
 # TODO: evaluate EavesARP
-# TODO: evaluate golang
 # TODO: evaluate man-spider
 # TODO: evaluate zmap
-# TODO: downloading leaked credentials
-# TODO: https://github.com/blacklanternsecurity/kali-setup-script/blob/master/kali-setup-script.sh
 
 message() {
 	tput setaf 2
@@ -121,6 +118,7 @@ sudo apt install \
 	docker \
 	eaphammer \
 	eyewitness \
+	golang \
 	hcxtools \
 	sherlock \
 	zellij \
