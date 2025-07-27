@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# TODO: add zellij when available
+# TODO: add prompts
+# TODO: fix Guest Additions
 # TODO: evaluate PCredz
 # TODO: evaluate EavesARP
 # TODO: evaluate man-spider
@@ -47,17 +50,18 @@ echo "kali:$password" | sudo chpasswd
 
 message 'Installing Guest Additions'
 sudo mount '/dev/cdrom' '/media/kali'
-sudo '/media/cdrom/VBoxLinuxAdditions.run'
+sudo /media/kali/*/VBoxLinuxAdditions.run
+
+export DEBIAN_FRONTEND='noninteractive'
+
+message 'Installing kernel headers'
+sudo apt install "linux-headers-$(uname -r)" -qqy
 
 message 'Updating'
-export DEBIAN_FRONTEND='noninteractive'
 sudo apt update -qqy
 sudo apt upgrade -qqy
 sudo apt autoremove -qqy
 sudo apt dist-upgrade -qqy
-
-message 'Installing kernel headers'
-sudo apt install "linux-headers-$(uname -r)" -qqy
 
 message 'Installing drivers'
 sudo apt install 'realtek-rtl88xxau-dkms' -qqy
@@ -115,14 +119,17 @@ sudo apt install \
 	bettercap \
 	bloodhound \
 	crackmapexec \
-	docker \
 	eaphammer \
 	eyewitness \
 	golang \
 	hcxtools \
 	sherlock \
-	zellij \
 	-qqy
+
+message 'Installing Docker'
+sudo apt install docker.io -qqy
+sudo systemctl enable docker --now
+sudo usermod -aG docker "$USER"
 
 # TODO: installing wallapapers
 # message 'Setting wallpaper'
