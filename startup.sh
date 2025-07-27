@@ -1,10 +1,11 @@
 #!/bin/sh
 
-# TODO: install pip?, rm gnome-software?, install golang?, install wallpapers?, install docker?, install zmap?, install hcxtools?, install bettercap?, install eaphammer?, install gowitness?, install man-spider?, install bloodhound?, install PCredz?, install EavesARP?, install CrackMapExec?, install Impacket?
-# TODO: initializing metasploit database?
-# TODO: unzipping RockYou
-# TODO: BurpSuite Pro?
-# TODO: Firefox Add-Ons?
+# TODO: evaluate PCredz
+# TODO: evaluate EavesARP
+# TODO: evaluate golang
+# TODO: evaluate man-spider
+# TODO: evaluate zmap
+# TODO: downloading leaked credentials
 # TODO: https://github.com/blacklanternsecurity/kali-setup-script/blob/master/kali-setup-script.sh
 
 message() {
@@ -62,7 +63,7 @@ message 'Installing kernel headers'
 sudo apt install "linux-headers-$(uname -r)" -qqy
 
 message 'Installing drivers'
-sudo apt install realtek-rtl88xxau-dkms -qqy
+sudo apt install 'realtek-rtl88xxau-dkms' -qqy
 
 message 'Adding keymaps'
 grep -q '^bindkey '\''^?'\''' "$HOME/.zshrc" || sed -i '/backward-kill-line/a bindkey '\''^?'\'' backward-kill-word                   # ctrl + delete' "$HOME/.zshrc"
@@ -106,7 +107,27 @@ while true; do
 	break
 done
 
-message 'Setting wallpaper'
-xfconf-query -c 'xfce4-desktop' -p '/backdrop/screen0/monitorVirtual1/workspace0/last-image' -s '/usr/share/backgrounds/kali-16x9/kali-metal-dark.png'
+message 'Unzipping wordlists'
+sudo gunzip '/usr/share/wordlists/rockyou.txt.gz'
+
+message 'Starting Metasploit database'
+sudo msfdb init
+
+message 'Installing tools'
+sudo apt install \
+	bettercap \
+	bloodhound \
+	crackmapexec \
+	docker \
+	eaphammer \
+	eyewitness \
+	hcxtools \
+	sherlock \
+	zellij \
+	-qqy
+
+# TODO: installing wallapapers
+# message 'Setting wallpaper'
+# xfconf-query -c 'xfce4-desktop' -p '/backdrop/screen0/monitorVirtual1/workspace0/last-image' -s '/usr/share/backgrounds/kali-16x9/kali-metal-dark.png'
 
 message 'Setup finished'
