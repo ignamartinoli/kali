@@ -125,6 +125,7 @@ sudo apt install \
 	eyewitness \
 	golang \
 	hcxtools \
+	seclists \
 	sherlock \
 	-qqy
 
